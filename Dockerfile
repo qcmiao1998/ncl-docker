@@ -11,4 +11,4 @@ USER $NB_USER
 
 ENV DISPLAY=host.docker.internal:0
 
-RUN conda install --yes -c conda-forge ncl pynio pyngl
+RUN conda install --yes -c conda-forge python=3.7 ncl pynio pyngl
