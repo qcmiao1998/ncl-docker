@@ -1,14 +1,9 @@
-FROM jupyter/scipy-notebook
+FROM continuumio/miniconda3
 
-USER root
+RUN conda install --yes -c conda-forge pynio pyngl tbb netcdf4 scipy jupyterlab
 
-RUN apt-get update && \
-    apt-get install -y csh libfreetype6-dev pkg-config libx11-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+EXPOSE 8888
 
-USER $NB_USER
+WORKDIR /jupyter/
 
-ENV DISPLAY=host.docker.internal:0
-
-RUN conda install --yes -c conda-forge python=3.7 ncl pynio pyngl
+CMD jupyter-lab --no-browser --allow-root --ip=*
